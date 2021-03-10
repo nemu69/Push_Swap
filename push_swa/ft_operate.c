@@ -31,6 +31,7 @@ int     sa(t_stack *a, t_stack *b, int nb)
 {
     long int temp;
 
+    // to do doublons operate useless
     if (a->nb > 1)
     {
         temp = a->stack[0];
@@ -47,6 +48,8 @@ int     sa(t_stack *a, t_stack *b, int nb)
 int     sb(t_stack *a, t_stack *b, int nb)
 {
     long int temp;
+
+    // to do doublons operate useless
     if (b->nb > 1)
     {
         temp = b->stack[0];
@@ -60,6 +63,8 @@ int     sb(t_stack *a, t_stack *b, int nb)
 
 int     ss(t_stack *a, t_stack *b, int nb)
 {
+    // to do doublons operate useless
+    // warniing dont ft_test for this
     sb(a, b, nb);
     sa(a, b, nb);
     if (ft_sort(a, b->nb) == 2)
@@ -124,6 +129,7 @@ int     ra(t_stack *a, t_stack *b, int nb)
     long int    temp;
     int         i;
 
+    // to do tour du monde useless
     if (a->nb > 1)
     {
         temp = a->stack[0];
@@ -147,6 +153,8 @@ int     rb(t_stack *a, t_stack *b, int nb)
     long int    temp;
     int         i;
 
+    // to do tour du monde useless
+
     if (b->nb > 1)
     {
         temp = b->stack[0];
@@ -165,6 +173,7 @@ int     rb(t_stack *a, t_stack *b, int nb)
 
 int     rr(t_stack *a, t_stack *b, int nb)
 {
+    // to do same warning useless
     rb(a, b, nb);
     ra(a, b, nb);
 
@@ -181,6 +190,7 @@ int     rra(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
+    // to do tour du monde useless
 
     if (a->nb > 1)
     {
@@ -204,6 +214,7 @@ int     rrb(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
+    // to do tour du monde useless
 
     if (b->nb > 1)
     {
@@ -223,6 +234,8 @@ int     rrb(t_stack *a, t_stack *b, int nb)
 
 int     rrr(t_stack *a, t_stack *b, int nb)
 {
+    // to do same warning useless
+
     rrb(a, b, nb);
     rra(a, b, nb);
     if (ft_sort(a, b->nb) == 2)
@@ -304,15 +317,19 @@ int     ft_test(t_stack *a, t_stack *b, int nb)
     ft_restart(tempa, tempb, a, b);
     if (rrr(a, b, nb))
         return (1);
+    // ft_restart(tempa, tempb, a, b);
+    // if (pa(a, b, nb))
+    //     return (1);
+    // ft_restart(tempa, tempb, a, b);
+    // if (pb(a, b, nb))
+    //     return (1);
     ft_restart(tempa, tempb, a, b);
-    if (pa(a, b, nb))
-        return (1);
-    ft_restart(tempa, tempb, a, b);
-    if (pb(a, b, nb))
-        return (1);
-    ft_restart(tempa, tempb, a, b);
+    // if (a->instruct == 8 && nb == 8)
+    free(tempa.stack);
+    free(tempb.stack);
     if (a->instruct == nb)
     {
+        write(1, "bob\n", 4);
         a->instruct++;
         return (ft_test(a, b, nb + 1));
     }
