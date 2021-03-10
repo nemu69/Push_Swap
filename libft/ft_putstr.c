@@ -20,5 +20,5 @@ int			ft_putstr(char *s)
 	i = 0;
 	while (s[i])
 		ft_putchar_fd(s[i++], 1);
-	return (0);
+	return (1);
 }

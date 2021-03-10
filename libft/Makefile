@@ -50,7 +50,7 @@ SRCS = 		ft_isdigit.c \
 			ft_lstclear_bonus.c \
 			ft_lstdelone_bonus.c
 
-HEADER = 	libft.h
+HEADER = 	.
 
 OBJS = ${SRCS:.c=.o}
 

@@ -12,12 +12,14 @@
 
 #include "push_swap.h"
 
-int     ft_sort(t_stack *a)
+int     ft_sort(t_stack *a, int empty)
 {
     int i;
 
     i = -1;
-    while (++i < a->nb)
+    if (empty != 0)
+        return (0);
+    while (++i < a->nb - 1)
     {
         if (a->stack[i] > a->stack[i + 1])
             return (1);
@@ -25,7 +27,7 @@ int     ft_sort(t_stack *a)
     return (2);
 }
 
-int     sa(t_stack *a, t_stack *b)
+int     sa(t_stack *a, t_stack *b, int nb)
 {
     long int temp;
 
@@ -34,40 +36,40 @@ int     sa(t_stack *a, t_stack *b)
         temp = a->stack[0];
         a->stack[0] = a->stack[1];
         a->stack[1] = temp;
-
-        if (ft_sort(a) == 2)
+        if (ft_sort(a, b->nb) == 2)
             return (1);
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     sb(t_stack *a, t_stack *b)
+int     sb(t_stack *a, t_stack *b, int nb)
 {
     long int temp;
-
     if (b->nb > 1)
     {
         temp = b->stack[0];
         b->stack[0] = b->stack[1];
         b->stack[1] = temp;
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     ss(t_stack *a, t_stack *b)
+int     ss(t_stack *a, t_stack *b, int nb)
 {
-
-    sb(a, b);
-    sa(a, b);
-    if (ft_sort(a) == 2)
+    sb(a, b, nb);
+    sa(a, b, nb);
+    if (ft_sort(a, b->nb) == 2)
         return (1);
-    ft_test(a, b);
+    if (ft_test(a, b, nb - 1))
+        return (1);
     return (0);
 }
 
-int     pa(t_stack *a, t_stack *b)
+int     pa(t_stack *a, t_stack *b, int nb)
 {
     int         i;
 
@@ -85,17 +87,18 @@ int     pa(t_stack *a, t_stack *b)
             i++;
         }
         b->nb--;
-        if (ft_sort(a) == 2)
+        if (ft_sort(a, b->nb) == 2)
             return (1);
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     pb(t_stack *a, t_stack *b)
+int     pb(t_stack *a, t_stack *b, int nb)
 {
     int         i;
-
+    
     if (a->nb > 0)
     {
         i = a->nb + 1;
@@ -110,12 +113,13 @@ int     pb(t_stack *a, t_stack *b)
             i++;
         }
         a->nb--;
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     ra(t_stack *a, t_stack *b)
+int     ra(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
@@ -130,14 +134,15 @@ int     ra(t_stack *a, t_stack *b)
             i++;
         }
         a->stack[a->nb - 1] = temp;
-        if (ft_sort(a) == 2)
+        if (ft_sort(a, b->nb) == 2)
             return (1);
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     rb(t_stack *a, t_stack *b)
+int     rb(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
@@ -152,81 +157,164 @@ int     rb(t_stack *a, t_stack *b)
             i++;
         }
         b->stack[b->nb - 1] = temp;
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     rr(t_stack *a, t_stack *b)
+int     rr(t_stack *a, t_stack *b, int nb)
 {
-    rb(a, b);
-    ra(a, b);
+    rb(a, b, nb);
+    ra(a, b, nb);
 
-    if (ft_sort(a) == 2)
+    if (ft_sort(a, b->nb) == 2)
         return (1);
-    ft_test(a, b);
+    if (nb == 1)
+            return (0);
+    if (ft_test(a, b, nb - 1))
+        return (1);
     return (0);
 }
 
-int     rra(t_stack *a, t_stack *b)
+int     rra(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
 
     if (a->nb > 1)
     {
-        temp = a->stack[a->nb - 1];
         i = 0;
+        temp = a->stack[0];
         while (i != a->nb)
         {
             a->stack[i] = a->stack[i + 1];
             i++;
         }
-        a->stack[0] = temp;
-        if (ft_sort(a) == 2)
+        a->stack[a->nb - 1] = temp;
+        if (ft_sort(a, b->nb) == 2)
             return (1);
-        ft_test(a, b);
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     rrb(t_stack *a, t_stack *b)
+int     rrb(t_stack *a, t_stack *b, int nb)
 {
     long int    temp;
     int         i;
 
     if (b->nb > 1)
     {
-        temp = b->stack[b->nb - 1];
         i = 0;
+        temp = b->stack[0];
         while (i != b->nb)
         {
             b->stack[i] = b->stack[i + 1];
             i++;
         }
-        b->stack[0] = temp;
-        ft_test(a, b);
+        b->stack[b->nb - 1] = temp;
+        if (ft_test(a, b, nb - 1))
+            return (1);
     }
     return (0);
 }
 
-int     rrr(t_stack *a, t_stack *b)
+int     rrr(t_stack *a, t_stack *b, int nb)
 {
-    rrb(a, b);
-    rra(a, b);
-    if (ft_sort(a) == 2)
+    rrb(a, b, nb);
+    rra(a, b, nb);
+    if (ft_sort(a, b->nb) == 2)
         return (1);
-    ft_test(a, b);
+    if (nb == 1)
+            return (0);
+    if (ft_test(a, b, nb - 1))
+        return (1);
     return (0);
 }
 
-int     ft_test(t_stack *a, t_stack *b)
-{    
-    if (sa(a, b) || sb(a, b) || ss(a, b) || ra(a, b) || rb(a, b) || rr(a, b) || rra(a, b) || rrb(a, b) || rrr(a, b) || pa(a, b) || pb(a, b))
+void    ft_restart(t_stack tempa, t_stack tempb, t_stack *a, t_stack *b)
+{
+    int i;
+
+    a->instruct = tempa.instruct;
+    a->nb = tempa.nb;
+    b->nb = tempb.nb;
+    i = -1;
+    while (++i < tempa.nb)
+        a->stack[i] = tempa.stack[i];
+    i = -1;
+    while (++i < tempb.nb)
+        b->stack[i] = tempb.stack[i];
+}
+void    ft_inittemp(t_stack *tempa, t_stack *tempb, t_stack *a, t_stack *b)
+{
+    int i;
+
+    i = -1;
+    while (++i < a->nb)
+        tempa->stack[i] = a->stack[i];
+    i = -1;
+    while (++i < b->nb)
+        tempb->stack[i] = b->stack[i];
+    tempa->nb = a->nb;
+    tempa->instruct = a->instruct;
+    tempb->nb = b->nb;
+}
+
+int     ft_test(t_stack *a, t_stack *b, int nb)
+{
+    t_stack tempa;
+    t_stack tempb;
+
+
+    if (ft_sort(a, b->nb) == 2)
+        return (1);
+    if (nb == 0)
+        return (0);
+     if (!(tempb.stack = (long int *)malloc(sizeof(long int) * a->nb)))
+        return (0);
+     if (!(tempa.stack = (long int *)malloc(sizeof(long int) * a->nb)))
+        return (0);
+    ft_inittemp(&tempa, &tempb, a, b);
+    if (sa(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (sb(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (ss(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (ra(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (rb(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (rr(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (rra(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (rrb(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (rrr(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (pa(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (pb(a, b, nb))
+        return (1);
+    ft_restart(tempa, tempb, a, b);
+    if (a->instruct == nb)
     {
-         for(int j = 0; j < a->nb; j++) {
-        printf("%ld\n", a->stack[j]);
-    }
+        a->instruct++;
+        return (ft_test(a, b, nb + 1));
     }
     return (0);
 }

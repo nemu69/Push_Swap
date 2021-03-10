@@ -21,8 +21,12 @@ typedef	struct		s_stack
 {
 	long int    *stack;
     int         nb;
+    int         instruct;
 }					t_stack;
 
-int     ft_test(t_stack *a, t_stack *b);
+typedef int (*function_ptr)(t_stack*, t_stack*, int);
+
+
+int     ft_test(t_stack *a, t_stack *b, int nb);
 
 #endif
