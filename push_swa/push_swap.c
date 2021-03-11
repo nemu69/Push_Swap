@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/08 16:41:12 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 17:56:20 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,39 @@ int    init_a(t_stack *a, char **av , int ac)
     }
     a->nb = ac - 1;
     a->instruct = 1;
+    a->doublon = 42;
     return (check_a(a->stack, ac - 1));
 }
+
+void swap(long int *xp,long  int *yp) 
+{ 
+    int temp = *xp; 
+    *xp = *yp; 
+    *yp = temp; 
+} 
+
+int bubbleSort(long int *arr, int n) 
+{ 
+   int ret = 0;
+   int i, j, min_idx; 
+  
+    // One by one move boundary of unsorted subarray 
+    for (i = 0; i < n-1; i++) 
+    { 
+        // Find the minimum element in unsorted array 
+        min_idx = i; 
+        for (j = i+1; j < n; j++)
+        {
+            if (arr[j] < arr[min_idx]) 
+                min_idx = j;
+            ret++;
+        }
+  
+        // Swap the found minimum element with the first element 
+        swap(&arr[min_idx], &arr[i]); 
+    } 
+    return(ret);
+} 
 
 int     main(int ac, char **av)
 {
@@ -69,11 +100,16 @@ int     main(int ac, char **av)
     if (!init_a(&a, av , ac))
         return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
     b.nb = 0;
-    printf("return : %d\n", ft_test(&a , &b, 1));
-    printf("instruct : %d\n", a.instruct);
-     for(int j = 0; j < a.nb; j++)
+    int ret = bubbleSort(a.stack, a.nb);
+    if (!init_a(&a, av , ac))
+        return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
+    
+    printf("return : %d\n", ret);
+    printf("return : %d\n", ft_test(&a , &b, ret));
+    for(int j = 0; j < a.nb; j++)
         {
             printf("%d : %ld\n", j,a.stack[j]);
         }
+    printf("instruct : %d\n", a.instruct);
     return (0);
 }
