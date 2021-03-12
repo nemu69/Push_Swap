@@ -25,7 +25,7 @@ typedef	struct		s_stack
     int         doublon;
 }					t_stack;
 
-typedef int (*function_ptr)(t_stack*, t_stack*, int);
+typedef int (*fct_ptr)(t_stack*, t_stack*, int);
 
 
 int     ft_test(t_stack *a, t_stack *b, int nb);

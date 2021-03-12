@@ -27,9 +27,12 @@ SRC_PATH	=			push_swa
 
 SRC_PATH2	=			checke
 
-SRCS_NAME	=			push_swap.c ft_operate.c
+SRCS_NAME	=			push_swap.c \
+						ft_operate.c
 
-SRCS_NAME2	=			checker.c
+SRCS_NAME2	=			checker.c \
+						get_next_line/get_next_line_utils.c \
+						get_next_line/get_next_line.c
 
 OBJS        =			${SRCS:.c=.o}
 
