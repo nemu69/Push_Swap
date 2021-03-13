@@ -1,37 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_sasbss.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
+/*   Created: 2021/03/13 11:21:16 by nepage-l          #+#    #+#             */
 /*   Updated: 2021/03/13 15:07:24 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../libft/libft.h"
+#include "checker.h"
 
-typedef	struct		s_stack
+int		sa(t_stack *a, t_stack *b)
 {
-	long long int		*stack;
-	int				nb;
-	int				instruct;
-	int				doublon;
-}					t_stack;
+	long long int temp;
 
-typedef	struct		s_fct
+	(void)b;
+	if (a->nb > 1)
+	{
+		temp = a->stack[0];
+		a->stack[0] = a->stack[1];
+		a->stack[1] = temp;
+		return (1);
+	}
+	return (0);
+}
+
+int		sb(t_stack *a, t_stack *b)
 {
-	int				(*fct_ptr)(t_stack*, t_stack*);
-	char			*name;
-	struct s_fct	*next;
-}					t_fct;
+	long long int temp;
 
-int					ft_test(t_stack *a, t_stack *b, int nb);
+	(void)a;
+	if (b->nb > 1)
+	{
+		temp = b->stack[0];
+		b->stack[0] = b->stack[1];
+		b->stack[1] = temp;
+		return (1);
+	}
+	return (0);
+}
 
-#endif
+int		ss(t_stack *a, t_stack *b)
+{
+	sb(a, b);
+	sa(a, b);
+	return (1);
+}

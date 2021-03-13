@@ -1,21 +1,20 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nepage-l <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/07/09 13:05:05 by nepage-l     #+#   ##    ##    #+#       */
-/*   Updated: 2019/10/10 22:05:22 by nepage-l    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/09 13:05:05 by nepage-l          #+#    #+#             */
+/*   Updated: 2021/03/13 15:27:04 by nepage-l         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+long long int		ft_atoi(const char *str)
 {
-	int i;
-	int nbr;
-	int negative;
+	int				i;
+	long long int	nbr;
+	int				negative;
 
 	nbr = 0;
 	negative = 1;

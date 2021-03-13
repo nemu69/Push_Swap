@@ -6,7 +6,7 @@
 #    By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 11:33:38 by nepage-l          #+#    #+#              #
-#    Updated: 2021/03/08 16:53:42 by nepage-l         ###   ########lyon.fr    #
+#    Updated: 2021/03/13 12:29:01 by nepage-l         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,13 @@ SRCS_NAME	=			push_swap.c \
 						ft_operate.c
 
 SRCS_NAME2	=			checker.c \
-						get_next_line/get_next_line_utils.c \
-						get_next_line/get_next_line.c
+						ft_read.c \
+						ft_papb.c \
+						ft_rarbrr.c \
+						ft_rrarrbrrr.c \
+						ft_sasbss.c \
+						../get_next_line/get_next_line_utils.c \
+						../get_next_line/get_next_line.c
 
 OBJS        =			${SRCS:.c=.o}
 

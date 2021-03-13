@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/11 17:26:24 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:07:24 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     ft_sort(t_stack *a, int empty)
 
 int     sa(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int temp;
+    long long int temp;
 
     // to do doublons operate useless
     if (a->nb > 1)
@@ -48,7 +48,7 @@ int     sa(t_stack *a, t_stack *b, int nb, int test)
 
 int     sb(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int temp;
+    long long int temp;
 
     // to do doublons operate useless
     if (b->nb > 1)
@@ -162,7 +162,7 @@ int     pb(t_stack *a, t_stack *b, int nb)
 
 int     ra(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int    temp;
+    long long int    temp;
     int         i;
 
     // to do tour du monde useless
@@ -187,7 +187,7 @@ int     ra(t_stack *a, t_stack *b, int nb, int test)
 
 int     rb(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int    temp;
+    long long int    temp;
     int         i;
 
     // to do tour du monde useless
@@ -228,7 +228,7 @@ int     rr(t_stack *a, t_stack *b, int nb)
 
 int     rra(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int    temp;
+    long long int    temp;
     int         i;
     // to do tour du monde useless
 
@@ -253,7 +253,7 @@ int     rra(t_stack *a, t_stack *b, int nb, int test)
 
 int     rrb(t_stack *a, t_stack *b, int nb, int test)
 {
-    long int    temp;
+    long long int    temp;
     int         i;
     // to do tour du monde useless
 

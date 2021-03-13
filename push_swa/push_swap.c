@@ -6,20 +6,20 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/11 17:56:20 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:08:27 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     free_all(long int *a, long int *b)
+int     free_all(long long int *a, long long int *b)
 {
     free(a);
     free(b);
     return (1);
 }
 
-int     check_a(long int *a, int nb)
+int     check_a(long long int *a, int nb)
 {
     int i;
     int j;
@@ -57,14 +57,14 @@ int    init_a(t_stack *a, char **av , int ac)
     return (check_a(a->stack, ac - 1));
 }
 
-void swap(long int *xp,long  int *yp) 
+void swap(long long int *xp,long long int *yp) 
 { 
-    int temp = *xp; 
+    long long temp = *xp; 
     *xp = *yp; 
     *yp = temp; 
 } 
 
-int bubbleSort(long int *arr, int n) 
+int bubbleSort(long long int *arr, int n) 
 { 
    int ret = 0;
    int i, j, min_idx; 
@@ -93,9 +93,9 @@ int     main(int ac, char **av)
     t_stack b;
     if (ac == 1)
         return (ft_putstr("Error\n"));
-    if (!(a.stack = (long int *)malloc(sizeof(long int) * ac - 1)))
+    if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
         return (0);
-    if (!(b.stack = (long int *)malloc(sizeof(long int) * ac - 1)))
+    if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
         return (0);
     if (!init_a(&a, av , ac))
         return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
@@ -108,7 +108,7 @@ int     main(int ac, char **av)
     printf("return : %d\n", ft_test(&a , &b, ret));
     for(int j = 0; j < a.nb; j++)
         {
-            printf("%d : %ld\n", j,a.stack[j]);
+            printf("%d : %lld\n", j,a.stack[j]);
         }
     printf("instruct : %d\n", a.instruct);
     return (0);

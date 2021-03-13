@@ -6,10 +6,9 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:56:41 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/08 12:12:01 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:13:50 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -41,7 +40,7 @@ int					ft_isdigit(int c);
 int					ft_isascii(int c);
 int					ft_isalpha(int c);
 int					ft_isalnum(int c);
-int					ft_atoi(const char *str);
+long long int		ft_atoi(const char *str);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				*ft_calloc(size_t nmemb, size_t size);
