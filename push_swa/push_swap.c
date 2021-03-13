@@ -6,110 +6,107 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 15:08:27 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 17:53:58 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     free_all(long long int *a, long long int *b)
+int		free_all(long long int *a, long long int *b)
 {
-    free(a);
-    free(b);
-    return (1);
+	free(a);
+	free(b);
+	return (1);
 }
 
-int     check_a(long long int *a, int nb)
+int		check_a(long long int *a, int nb)
 {
-    int i;
-    int j;
+	int i;
+	int j;
 
-    i = 0;
-    while (i < nb)
-    {
-        if (a[i] < -2147483647 || a[i] > 2147483647)
-            return (0);
-        j = i + 1;
-        while (j < nb)
-        {
-            if (a[i] == a[j])
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (i < nb)
+	{
+		if (a[i] < -2147483647 || a[i] > 2147483647)
+			return (0);
+		j = i + 1;
+		while (j < nb)
+		{
+			if (a[i] == a[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int    init_a(t_stack *a, char **av , int ac)
+int		init_a(t_stack *a, char **av, int ac)
 {
-    int i;
+	int i;
 
-    i = 1;
-    while (av[i])
-    {
-        a->stack[i - 1] = ft_atoi(av[i]);
-        i++;
-    }
-    a->nb = ac - 1;
-    a->instruct = 1;
-    a->doublon = 42;
-    return (check_a(a->stack, ac - 1));
+	i = 1;
+	while (av[i])
+	{
+		a->stack[i - 1] = ft_atoi(av[i]);
+		i++;
+	}
+	a->nb = ac - 1;
+	a->instruct = 0;
+	a->doublon = 42;
+	return (check_a(a->stack, ac - 1));
 }
 
-void swap(long long int *xp,long long int *yp) 
-{ 
-    long long temp = *xp; 
-    *xp = *yp; 
-    *yp = temp; 
-} 
-
-int bubbleSort(long long int *arr, int n) 
-{ 
-   int ret = 0;
-   int i, j, min_idx; 
-  
-    // One by one move boundary of unsorted subarray 
-    for (i = 0; i < n-1; i++) 
-    { 
-        // Find the minimum element in unsorted array 
-        min_idx = i; 
-        for (j = i+1; j < n; j++)
-        {
-            if (arr[j] < arr[min_idx]) 
-                min_idx = j;
-            ret++;
-        }
-  
-        // Swap the found minimum element with the first element 
-        swap(&arr[min_idx], &arr[i]); 
-    } 
-    return(ret);
-} 
-
-int     main(int ac, char **av)
+int		shellsort(long long *arr, int n)
 {
-    t_stack a;
-    t_stack b;
-    if (ac == 1)
-        return (ft_putstr("Error\n"));
-    if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-        return (0);
-    if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-        return (0);
-    if (!init_a(&a, av , ac))
-        return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
-    b.nb = 0;
-    int ret = bubbleSort(a.stack, a.nb);
-    if (!init_a(&a, av , ac))
-        return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
-    
-    printf("return : %d\n", ret);
-    printf("return : %d\n", ft_test(&a , &b, ret));
-    for(int j = 0; j < a.nb; j++)
-        {
-            printf("%d : %lld\n", j,a.stack[j]);
-        }
-    printf("instruct : %d\n", a.instruct);
-    return (0);
+	int	ret;
+	int	gap;
+	int	i;
+	int	temp;
+	int	j;
+
+	gap = n / 2;
+	ret = 0;
+	while (gap > 0)
+	{
+		i = gap;
+		while (i < n)
+		{
+			++ret ? temp = arr[i] : 0;
+			j = i;
+			while (j >= gap && arr[j - gap] > temp)
+			{
+				arr[j] = arr[j - gap];
+				j -= gap;
+			}
+			++i ? arr[j] = temp : 0;
+		}
+		gap /= 2;
+	}
+	return (ret);
+}
+
+int		main(int ac, char **av)
+{
+	t_stack	a;
+	t_stack	b;
+	t_fct	*fct;
+	int		ret;
+
+	fct = NULL;
+	ft_init_fct(&fct);
+	if (ac == 1)
+		return (ft_putstr("Error\n"));
+	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
+		return (0);
+	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
+		return (0);
+	if (!init_a(&a, av, ac))
+		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
+	b.nb = 0;
+	ret = shellsort(a.stack, a.nb);
+	if (!init_a(&a, av, ac))
+		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
+	ft_test(&a, &b, ret, fct);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 15:20:46 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 17:54:48 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		ft_read_stack(t_stack *a, t_stack *b, char **line)
 	{
 		ret = -1;
 		if (!ft_check_command(fct, *line, a, b))
-			return (free_all(a->stack, b->stack, fct) && ft_putstr("KO\n"));
+			return (free_all(a->stack, b->stack, fct) && ft_putstr("Error\n"));
 		while (++ret < a->instruct)
 		{
 			write(1, "\n", 1);
