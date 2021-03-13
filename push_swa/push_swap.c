@@ -11,13 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		free_all(long long int *a, long long int *b)
-{
-	free(a);
-	free(b);
-	return (1);
-}
+#include "../get_next_line/get_next_line.h"
 
 int		check_a(long long int *a, int nb)
 {
@@ -86,6 +80,22 @@ int		shellsort(long long *arr, int n)
 	return (ret);
 }
 
+int		print_answer(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	while (--i >= 0)
+	{
+		if (tab[i])
+			write(1, tab[i], ft_strlen(tab[i]));
+		free(tab[i]);
+	}
+	free(tab);
+}
+
 int		main(int ac, char **av)
 {
 	t_stack	a;
@@ -94,7 +104,6 @@ int		main(int ac, char **av)
 	int		ret;
 
 	fct = NULL;
-	ft_init_fct(&fct);
 	if (ac == 1)
 		return (ft_putstr("Error\n"));
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
@@ -102,11 +111,15 @@ int		main(int ac, char **av)
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
 		return (0);
 	if (!init_a(&a, av, ac))
-		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
+		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
 	b.nb = 0;
 	ret = shellsort(a.stack, a.nb);
+	if (!(a.tab = calloc(sizeof(char *), ret + 1)))
+		return (0);
 	if (!init_a(&a, av, ac))
-		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
+		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
+	ft_init_fct(&fct);
 	ft_test(&a, &b, ret, fct);
-	return (0);
+	print_answer(a.tab);
+	return (free_all(a.stack, b.stack, fct));
 }

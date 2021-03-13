@@ -28,11 +28,26 @@ typedef	struct		s_stack
 
 typedef	struct		s_fct
 {
-	int				(*fct_ptr)(t_stack*, t_stack*);
-	int				doubl;
+	int				(*fct_ptr)(t_stack*, t_stack*, int, struct s_fct *);
+	char			*name;
 	struct s_fct	*next;
 }					t_fct;
 
 int					ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					free_all(long long int *a, long long int *b, t_fct *fct);
+int     			ft_sort(t_stack *a, int empty);
+void				ft_init_fct(t_fct **fct);
+
+int					pa(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					pb(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					ra(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					rb(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					rr(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					rra(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					rrb(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					rrr(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					sa(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					sb(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					ss(t_stack *a, t_stack *b, int nb, t_fct *fct);
 
 #endif

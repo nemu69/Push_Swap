@@ -36,6 +36,7 @@ int		ft_check_command(t_fct *fct, char *line, t_stack *a, t_stack *b)
 	{
 		if (!ft_strcmp(temp->name, line))
 		{
+			write(1, line, ft_strlen(line));
 			temp->fct_ptr(a, b);
 			return (1);
 		}
@@ -103,7 +104,7 @@ int		ft_read_stack(t_stack *a, t_stack *b, char **line)
 			if (ret < b->nb)
 				ft_putnbr_fd(b->stack[ret], 1);
 		}
-		write(1, "\n--------\nA B\n", 14);
+		write(1, "\n--------\nA B\n\n", 15);
 	}
 	if (ft_sort(a, b->nb))
 		return (free_all(a->stack, b->stack, fct) && ft_putstr("OK\n"));

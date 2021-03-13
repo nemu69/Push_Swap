@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-int		ra(t_stack *a, t_stack *b, int nb, int test)
+int		ra(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
 	long long int	temp;
 	int				i;
 
-	(void)b;
-	if (a->nb > 1)
+	if (a->nb > 1 && a->doublon != 7)
 	{
+        a->doublon = 5;
 		temp = a->stack[0];
 		i = 1;
 		while (i != a->nb)
@@ -28,22 +28,22 @@ int		ra(t_stack *a, t_stack *b, int nb, int test)
 			i++;
 		}
 		a->stack[a->nb - 1] = temp;
-		if (test && ft_sort(a, b->nb) == 2)
+		if (nb && ft_sort(a, b->nb))
 			return (1);
-		if (test && ft_test(a, b, nb - 1))
+		if (nb && ft_test(a, b, nb - 1, fct))
 			return (1);
 	}
 	return (0);
 }
 
-int		rb(t_stack *a, t_stack *b, int nb, int test)
+int		rb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
 	long long int	temp;
 	int				i;
 
-	(void)a;
-	if (b->nb > 1)
+	if (b->nb > 1 && a->doublon != 8)
 	{
+        a->doublon = 6;
 		temp = b->stack[0];
 		i = 1;
 		while (i != b->nb)
@@ -52,25 +52,23 @@ int		rb(t_stack *a, t_stack *b, int nb, int test)
 			i++;
 		}
 		b->stack[b->nb - 1] = temp;
-		if (test && ft_sort(a, b->nb) == 2)
+		if (nb && ft_sort(a, b->nb))
 			return (1);
-		if (test && ft_test(a, b, nb - 1))
+		if (nb && ft_test(a, b, nb - 1, fct))
 			return (1);
 	}
 	return (0);
 }
 
-int		rr(t_stack *a, t_stack *b, int nb)
+int		rr(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
-	if (b->nb < 2 || a->nb < 2)
+	if (b->nb < 2 || a->nb < 2 || a->doublon == 8 || a->doublon == 7)
 		return (0);
-	rb(a, b, nb, 0);
-	ra(a, b, nb, 0);
-	if (ft_sort(a, b->nb) == 2)
-		return (1);
+	rb(a, b, 0, NULL);
+	ra(a, b, 0, NULL);
 	if (nb == 1)
 		return (0);
-	if (ft_test(a, b, nb - 1))
+	if (ft_test(a, b, nb - 1, fct))
 		return (1);
 	return (0);
 }

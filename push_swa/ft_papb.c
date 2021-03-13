@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-int		pa(t_stack *a, t_stack *b, int nb)
+int		pa(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
 	int	i;
 
-	if (b->nb > 0)
+	if (b->nb > 0 && a->doublon != 4)
 	{
 		a->doublon = 3;
 		i = a->nb;
@@ -34,20 +34,21 @@ int		pa(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		b->nb--;
-		if (ft_sort(a, b->nb) == 2)
+		if (ft_sort(a, b->nb))
 			return (1);
-		if (ft_test(a, b, nb - 1))
+		if (ft_test(a, b, nb - 1, fct))
 			return (1);
 	}
 	return (0);
 }
 
-int		pb(t_stack *a, t_stack *b, int nb)
+int		pb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
 	int	i;
 
-	if (a->nb > 0)
+	if (a->nb > 0 && a->doublon != 3)
 	{
+		a->doublon = 4;
 		i = b->nb;
 		while (i > 0)
 		{
@@ -63,7 +64,7 @@ int		pb(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		a->nb--;
-		if (ft_test(a, b, nb - 1))
+		if (ft_test(a, b, nb - 1, fct))
 			return (1);
 	}
 	return (0);
