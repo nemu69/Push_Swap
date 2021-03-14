@@ -21,7 +21,7 @@ int		check_a(long long int *a, int nb)
 	i = 0;
 	while (i < nb)
 	{
-		if (a[i] < -2147483647 || a[i] > 2147483647)
+		if (a[i] < -2147483648 || a[i] > 2147483647)
 			return (0);
 		j = i + 1;
 		while (j < nb)
@@ -38,10 +38,19 @@ int		check_a(long long int *a, int nb)
 int		init_a(t_stack *a, char **av, int ac)
 {
 	int i;
+	int j;
 
 	i = 1;
 	while (av[i])
 	{
+		j = 0;
+		while(av[i][j])
+		{
+			if (ft_isdigit(av[i][j]) || av[i][j] == '+' || av[i][j] == '-')
+				j++;
+			else
+				return (0);
+		}
 		a->stack[i - 1] = ft_atoi(av[i]);
 		i++;
 	}
@@ -80,13 +89,11 @@ int		shellsort(long long *arr, int n)
 	return (ret);
 }
 
-int		print_answer(char **tab)
+int		print_answer(char **tab, int ret)
 {
 	int i;
 
-	i = 0;
-	while (tab[i])
-		i++;
+	i = ret;
 	while (--i >= 0)
 	{
 		if (tab[i])
@@ -94,6 +101,7 @@ int		print_answer(char **tab)
 		free(tab[i]);
 	}
 	free(tab);
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -107,9 +115,9 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		return (ft_putstr("Error\n"));
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (0);
+		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (0);
+		return (free_all(a.stack, NULL, NULL) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
 		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
 	b.nb = 0;
@@ -120,6 +128,6 @@ int		main(int ac, char **av)
 		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
 	ft_init_fct(&fct);
 	ft_test(&a, &b, ret, fct);
-	print_answer(a.tab);
+	print_answer(a.tab, ret);
 	return (free_all(a.stack, b.stack, fct));
 }

@@ -56,10 +56,19 @@ int		check_a(long long int *a, int nb)
 int		init_a(t_stack *a, char **av, int ac)
 {
 	int i;
+	int j;
 
 	i = 1;
 	while (av[i])
 	{
+		j = 0;
+		while(av[i][j])
+		{
+			if (ft_isdigit(av[i][j]) || av[i][j] == '+' || av[i][j] == '-')
+				j++;
+			else
+				return (0);
+		}
 		a->stack[i - 1] = ft_atoi(av[i]);
 		i++;
 	}

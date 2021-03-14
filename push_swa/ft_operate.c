@@ -70,7 +70,7 @@ int     ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct)
 	while (1)
 	{
 		if (!temp)
-			break; 
+			return (0);
 		if (temp->fct_ptr(a, b, nb, fct))
 		{
 			a->tab[nb - 1] = ft_strdup(temp->name);
@@ -80,5 +80,4 @@ int     ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct)
 		ft_gars(taba, tabb, a, b);
 		temp = temp->next;
 	}
-	return (0);
 }

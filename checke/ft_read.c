@@ -37,11 +37,13 @@ int		ft_check_command(t_fct *fct, char *line, t_stack *a, t_stack *b)
 		if (!ft_strcmp(temp->name, line))
 		{
 			write(1, line, ft_strlen(line));
+			free(line);
 			temp->fct_ptr(a, b);
 			return (1);
 		}
 		temp = temp->next;
 	}
+	free(line);
 	return (0);
 }
 

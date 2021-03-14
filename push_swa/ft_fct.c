@@ -31,8 +31,10 @@ int		free_all(long long int *a, long long int *b, t_fct *fct)
 {
 	t_fct *temp;
 
-	free(a);
-	free(b);
+	if (a)
+		free(a);
+	if (b)
+		free(b);
 	if (fct)
 	{
 		while (fct)
