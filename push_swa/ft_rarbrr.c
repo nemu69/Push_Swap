@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:22:27 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 17:47:47 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:52:59 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ra(t_stack *a, t_stack *b, int nb, t_fct *fct)
 
 	if (a->nb > 1 && a->doublon != 7)
 	{
-        a->doublon = 5;
+		a->doublon = 5;
 		temp = a->stack[0];
 		i = 1;
 		while (i != a->nb)
@@ -43,7 +43,7 @@ int		rb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 
 	if (b->nb > 1 && a->doublon != 8)
 	{
-        a->doublon = 6;
+		a->doublon = 6;
 		temp = b->stack[0];
 		i = 1;
 		while (i != b->nb)

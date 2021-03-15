@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:28:51 by aviscogl          #+#    #+#             */
-/*   Updated: 2021/03/13 15:18:15 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 12:03:03 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int		free_all(long long int *a, long long int *b, t_fct *fct)
 {
 	t_fct *temp;
 
-	free(a);
-	free(b);
+	if (a)
+		free(a);
+	if (b)
+		free(b);
 	if (fct)
 	{
 		while (fct)
@@ -62,7 +64,7 @@ int		init_a(t_stack *a, char **av, int ac)
 	while (av[i])
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if (ft_isdigit(av[i][j]) || av[i][j] == '+' || av[i][j] == '-')
 				j++;
@@ -87,9 +89,9 @@ int		main(int ac, char **av)
 	if (ac == 1)
 		return (ft_putstr("Error\n"));
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (0);
+		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (0);
+		return (free_all(a.stack, NULL, NULL) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
 		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
 	b.nb = 0;

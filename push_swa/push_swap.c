@@ -6,12 +6,11 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 17:53:58 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 12:02:36 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../get_next_line/get_next_line.h"
 
 int		check_a(long long int *a, int nb)
 {
@@ -44,7 +43,7 @@ int		init_a(t_stack *a, char **av, int ac)
 	while (av[i])
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
 			if (ft_isdigit(av[i][j]) || av[i][j] == '+' || av[i][j] == '-')
 				j++;

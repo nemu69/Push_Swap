@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 17:57:13 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:58:08 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 typedef	struct		s_stack
 {
-	long long int		*stack;
+	long long int	*stack;
 	int				nb;
 	int				instruct;
 	int				doublon;
@@ -35,8 +36,8 @@ typedef	struct		s_fct
 
 int					ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct);
 int					free_all(long long int *a, long long int *b, t_fct *fct);
-int     			ft_sort(t_stack *a, int empty);
-void				ft_init_fct(t_fct **fct);
+int					ft_sort(t_stack *a, int empty);
+int					ft_init_fct(t_fct **fct);
 
 int					pa(t_stack *a, t_stack *b, int nb, t_fct *fct);
 int					pb(t_stack *a, t_stack *b, int nb, t_fct *fct);

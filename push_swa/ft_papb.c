@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:23:47 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 17:46:44 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:52:22 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		pa(t_stack *a, t_stack *b, int nb, t_fct *fct)
 		b->nb--;
 		if (ft_sort(a, b->nb))
 			return (1);
-		if (ft_test(a, b, nb - 1, fct))
-			return (1);
+		return (ft_test(a, b, nb - 1, fct));
 	}
 	return (0);
 }

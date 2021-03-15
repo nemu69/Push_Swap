@@ -6,13 +6,13 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:55:12 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 17:58:53 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:51:06 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     ft_sort(t_stack *a, int empty)
+int	ft_sort(t_stack *a, int empty)
 {
 	int i;
 
@@ -27,7 +27,7 @@ int     ft_sort(t_stack *a, int empty)
 	return (1);
 }
 
-int		free_all(long long int *a, long long int *b, t_fct *fct)
+int	free_all(long long int *a, long long int *b, t_fct *fct)
 {
 	t_fct *temp;
 
@@ -42,12 +42,13 @@ int		free_all(long long int *a, long long int *b, t_fct *fct)
 			temp = fct;
 			fct = fct->next;
 			free(temp);
+			free(temp->name);
 		}
 	}
 	return (1);
 }
 
-void	ft_new_fct(t_fct **fct, int (*fct_ptr)(t_stack*, t_stack*, int, t_fct*), char *name)
+int	fc(t_fct **fct, int (*fct_ptr)(t_stack*, t_stack*, int, t_fct*), char *name)
 {
 	t_fct *temp;
 
@@ -68,19 +69,21 @@ void	ft_new_fct(t_fct **fct, int (*fct_ptr)(t_stack*, t_stack*, int, t_fct*), ch
 		temp->next->name = ft_strdup(name);
 		temp->next->next = NULL;
 	}
+	return (0);
 }
 
-void	ft_init_fct(t_fct **fct)
+int	ft_init_fct(t_fct **fct)
 {
-	ft_new_fct(fct, sa, "sa\n");
-	ft_new_fct(fct, ra, "ra\n");
-	ft_new_fct(fct, rra, "rra\n");
-	ft_new_fct(fct, pb, "pb\n");
-	ft_new_fct(fct, rr, "rr\n");
-	ft_new_fct(fct, rrr, "rrr\n");
-	ft_new_fct(fct, ss, "ss\n");
-	ft_new_fct(fct, pa, "pa\n");
-	ft_new_fct(fct, sb, "sb\n");
-	ft_new_fct(fct, rb, "rb\n");
-	ft_new_fct(fct, rrb, "rrb\n");
+	fc(fct, sa, "sa\n");
+	fc(fct, ra, "ra\n");
+	fc(fct, rra, "rra\n");
+	fc(fct, pb, "pb\n");
+	fc(fct, rr, "rr\n");
+	fc(fct, rrr, "rrr\n");
+	fc(fct, ss, "ss\n");
+	fc(fct, pa, "pa\n");
+	fc(fct, sb, "sb\n");
+	fc(fct, rb, "rb\n");
+	fc(fct, rrb, "rrb\n");
+	return (0);
 }
