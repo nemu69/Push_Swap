@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:25:23 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/13 15:24:58 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 11:29:15 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 int		rra(t_stack *a, t_stack *b)
 {
 	long long int	temp;
+	long long int	temp2;
 	int				i;
 
 	(void)b;
 	if (a->nb > 1)
 	{
 		i = 0;
-		temp = a->stack[0];
+		temp = a->stack[i];
 		while (i != a->nb)
 		{
-			a->stack[i] = a->stack[i + 1];
+			temp2 = temp;
+			temp = a->stack[i + 1];
+			a->stack[i + 1] = temp2;
 			i++;
 		}
-		a->stack[a->nb - 1] = temp;
+		a->stack[0] = temp2;
 		return (1);
 	}
 	return (0);

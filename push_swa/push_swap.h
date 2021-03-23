@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/15 11:58:08 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 18:05:28 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 typedef	struct		s_stack
 {
 	long long int	*stack;
+	long long int	*sort;
+	int				min;
+	int				maxnb;
+	int				chunk;
+	int				indchunk;
 	int				nb;
-	int				instruct;
 	int				doublon;
 	char			**tab;
 }					t_stack;
@@ -35,10 +39,10 @@ typedef	struct		s_fct
 }					t_fct;
 
 int					ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					free_all(long long int *a, long long int *b, t_fct *fct);
+int					free_all(long long int *a, long long int *b);
 int					ft_sort(t_stack *a, int empty);
-int					ft_init_fct(t_fct **fct);
-
+int					ft_init_fct(t_fct **fct, t_stack *a, int nb);
+int					ft_check_before(t_stack *a, t_stack *b, int nb);
 int					pa(t_stack *a, t_stack *b, int nb, t_fct *fct);
 int					pb(t_stack *a, t_stack *b, int nb, t_fct *fct);
 int					ra(t_stack *a, t_stack *b, int nb, t_fct *fct);

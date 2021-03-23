@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/15 12:02:36 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 14:11:50 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int		init_a(t_stack *a, char **av, int ac)
 		i++;
 	}
 	a->nb = ac - 1;
-	a->instruct = 0;
+	a->maxnb = a->nb;
+	a->chunk = (a->nb % 2 == 0 ? a->nb / 2 : a->nb / 2 + 1);
+	a->indchunk = 0;
 	a->doublon = 42;
 	return (check_a(a->stack, ac - 1));
 }
@@ -88,20 +90,20 @@ int		shellsort(long long *arr, int n)
 	return (ret);
 }
 
-int		print_answer(char **tab, int ret)
-{
-	int i;
+//int		print_answer(char **tab, int ret)
+//{
+//	int i;
 
-	i = ret;
-	while (--i >= 0)
-	{
-		if (tab[i])
-			write(1, tab[i], ft_strlen(tab[i]));
-		free(tab[i]);
-	}
-	free(tab);
-	return (0);
-}
+//	i = ret;
+//	while (--i >= 0)
+//	{
+//		if (tab[i])
+//			write(1, tab[i], ft_strlen(tab[i]));
+//		free(tab[i]);
+//	}
+//	free(tab);
+//	return (0);
+//}
 
 int		main(int ac, char **av)
 {
@@ -110,23 +112,21 @@ int		main(int ac, char **av)
 	t_fct	*fct;
 	int		ret;
 
-	fct = NULL;
 	if (ac == 1)
-		return (ft_putstr("Error\n"));
+		return (0);
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
 		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (free_all(a.stack, NULL, NULL) && ft_putstr("Error\n"));
+		return (free_all(a.stack, NULL) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
+		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
 	b.nb = 0;
 	ret = shellsort(a.stack, a.nb);
-	if (!(a.tab = calloc(sizeof(char *), ret + 1)))
-		return (0);
+	if (!ft_init_fct(&fct, &a, a.nb))
+		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(a.stack, b.stack, NULL) && ft_putstr("Error\n"));
-	ft_init_fct(&fct);
+		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
 	ft_test(&a, &b, ret, fct);
-	print_answer(a.tab, ret);
-	return (free_all(a.stack, b.stack, fct));
+	//print_answer(a.tab, ret);
+	return (!free_all(a.stack, b.stack));
 }

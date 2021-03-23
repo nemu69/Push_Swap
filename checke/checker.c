@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:28:51 by aviscogl          #+#    #+#             */
-/*   Updated: 2021/03/15 12:03:03 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 13:42:44 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		main(int ac, char **av)
 	char		*line;
 
 	if (ac == 1)
-		return (ft_putstr("Error\n"));
+		return (0);
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
 		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
