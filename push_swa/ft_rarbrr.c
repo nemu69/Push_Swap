@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 11:22:27 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 18:12:29 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 18:27:23 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ra(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		a->stack[a->nb - 1] = temp;
-		if (nb && ft_test(a, b, nb - 1))
+		if (nb && lil_sort(a, b, nb - 1))
 			return (1);
 	}
 	return (0);
@@ -50,7 +50,7 @@ int		rb(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		b->stack[b->nb - 1] = temp;
-		if (nb && ft_test(a, b, nb - 1))
+		if (nb && lil_sort(a, b, nb - 1))
 			return (1);
 	}
 	return (0);
@@ -64,7 +64,7 @@ int		rr(t_stack *a, t_stack *b, int nb)
 	ra(a, b, 0);
 	if (nb == 1)
 		return (0);
-	if (ft_test(a, b, nb - 1))
+	if (lil_sort(a, b, nb - 1))
 		return (1);
 	return (0);
 }

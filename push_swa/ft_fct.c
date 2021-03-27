@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 17:55:12 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 18:20:09 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 19:15:49 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,32 @@ int	ft_sort(t_stack *a, int empty)
 	return (1);
 }
 
-int	free_all(long long int *a, long long int *b)
+int	free_all(t_stack *a, t_stack *b)
 {
-	if (a)
-		free(a);
-	if (b)
-		free(b);
+	int i;
+
+	i = 0;
+	if (a->stack)
+		free(a->stack);
+	if (b->stack)
+		free(b->stack);
+	if (a->sort)
+		free(a->sort);
+	if (a->tab)
+	{
+		
+		while (a->tab[i])
+		{
+			dprintf(1, "%s\n", a->tab[i]);
+			i++;
+		}
+		while (--i < 0)
+		{
+			ft_putstr(a->tab[i]);
+			free(a->tab[i]);
+		}
+	}
+	free(a->tab);
 	return (1);
 }
 

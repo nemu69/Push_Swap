@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 18:20:18 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 19:12:07 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef	struct		s_fct
 }					t_fct;
 
 int					ft_test(t_stack *a, t_stack *b, int nb);
-int					free_all(long long int *a, long long int *b);
+int					free_all(t_stack *a, t_stack *b);
 int					ft_sort(t_stack *a, int empty);
 int					ft_init_fct(t_stack *a, int nb);
+int					lil_sort(t_stack *a, t_stack *b, int nb);
 int					ft_check_before(t_stack *a, t_stack *b, int nb);
 int					pa(t_stack *a, t_stack *b, int nb);
 int					pb(t_stack *a, t_stack *b, int nb);
