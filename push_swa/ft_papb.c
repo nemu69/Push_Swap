@@ -6,13 +6,13 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:23:47 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/23 14:11:21 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 18:12:14 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		pa(t_stack *a, t_stack *b, int nb, t_fct *fct)
+int		pa(t_stack *a, t_stack *b, int nb)
 {
 	int	i;
 
@@ -35,12 +35,12 @@ int		pa(t_stack *a, t_stack *b, int nb, t_fct *fct)
 		}
 		b->nb--;
 		if (nb)
-			return (ft_test(a, b, nb - 1, fct));
+			return (ft_test(a, b, nb - 1));
 	}
 	return (0);
 }
 
-int		pb(t_stack *a, t_stack *b, int nb, t_fct *fct)
+int		pb(t_stack *a, t_stack *b, int nb)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ int		pb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 		}
 		a->nb--;
 		if (nb)
-			return (ft_test(a, b, nb - 1, fct));
+			return (ft_test(a, b, nb - 1));
 	}
 	return (0);
 }

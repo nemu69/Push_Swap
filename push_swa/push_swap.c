@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 14:23:59 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 18:21:34 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		init_a(t_stack *a, char **av, int ac)
 	a->nb = ac - 1;
 	a->maxnb = a->nb;
 	a->chunk = (a->nb % 2 == 0 ? a->nb / 10 : a->nb / 10 + 1);
-	//a->chunk = 2;
 	a->chunked = a->chunk;
 	a->indchunk = 0;
 	a->doublon = 42;
@@ -92,26 +91,10 @@ int		shellsort(long long *arr, int n)
 	return (ret);
 }
 
-//int		print_answer(char **tab, int ret)
-//{
-//	int i;
-
-//	i = ret;
-//	while (--i >= 0)
-//	{
-//		if (tab[i])
-//			write(1, tab[i], ft_strlen(tab[i]));
-//		free(tab[i]);
-//	}
-//	free(tab);
-//	return (0);
-//}
-
 int		main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	t_fct	*fct;
 	int		ret;
 
 	if (ac == 1)
@@ -124,11 +107,10 @@ int		main(int ac, char **av)
 		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
 	b.nb = 0;
 	ret = shellsort(a.stack, a.nb);
-	if (!ft_init_fct(&fct, &a, a.nb))
+	if (!ft_init_fct(&a, a.nb))
 		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
 		return (free_all(a.stack, b.stack) && ft_putstr("Error\n"));
-	ft_test(&a, &b, ret, fct);
-	//print_answer(a.tab, ret);
+	ft_test(&a, &b, ret);
 	return (!free_all(a.stack, b.stack));
 }

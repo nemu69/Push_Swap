@@ -6,18 +6,18 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 12:25:23 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 14:11:12 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 18:22:29 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		rra(t_stack *a, t_stack *b, int nb, t_fct *fct)
+int		rra(t_stack *a, t_stack *b, int nb)
 {
 	long long int	temp;
 	long long int	temp2;
 	int				i;
-	
+
 	if (a->nb > 1 && a->doublon != 5)
 	{
 		a->doublon = 7;
@@ -31,14 +31,13 @@ int		rra(t_stack *a, t_stack *b, int nb, t_fct *fct)
 			i++;
 		}
 		a->stack[0] = temp2;
-	
-		if (nb && ft_test(a, b, nb - 1, fct))
+		if (nb && ft_test(a, b, nb - 1))
 			return (1);
 	}
 	return (0);
 }
 
-int		rrb(t_stack *a, t_stack *b, int nb, t_fct *fct)
+int		rrb(t_stack *a, t_stack *b, int nb)
 {
 	long long int	temp;
 	long long int	temp2;
@@ -56,23 +55,23 @@ int		rrb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 			i++;
 		}
 		b->stack[0] = temp2;
-		if (nb && ft_test(a, b, nb - 1, fct))
+		if (nb && ft_test(a, b, nb - 1))
 			return (1);
 	}
 	return (0);
 }
 
-int		rrr(t_stack *a, t_stack *b, int nb, t_fct *fct)
+int		rrr(t_stack *a, t_stack *b, int nb)
 {
 	if (a->doublon == 6 || a->doublon == 5 || b->nb < 2 || a->nb < 2)
 		return (0);
-	rrb(a, b, 0, NULL);
-	rra(a, b, 0, NULL);
+	rrb(a, b, 0);
+	rra(a, b, 0);
 	if (ft_sort(a, b->nb))
 		return (1);
 	if (nb == 1)
 		return (0);
-	if (ft_test(a, b, nb - 1, fct))
+	if (ft_test(a, b, nb - 1))
 		return (1);
 	return (0);
 }

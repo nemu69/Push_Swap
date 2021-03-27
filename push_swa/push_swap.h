@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/24 12:10:54 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 18:20:18 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ typedef	struct		s_fct
 	struct s_fct	*next;
 }					t_fct;
 
-int					ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					ft_test(t_stack *a, t_stack *b, int nb);
 int					free_all(long long int *a, long long int *b);
 int					ft_sort(t_stack *a, int empty);
-int					ft_init_fct(t_fct **fct, t_stack *a, int nb);
+int					ft_init_fct(t_stack *a, int nb);
 int					ft_check_before(t_stack *a, t_stack *b, int nb);
-int					pa(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					pb(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					ra(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					rb(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					rr(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					rra(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					rrb(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					rrr(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					sa(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					sb(t_stack *a, t_stack *b, int nb, t_fct *fct);
-int					ss(t_stack *a, t_stack *b, int nb, t_fct *fct);
+int					pa(t_stack *a, t_stack *b, int nb);
+int					pb(t_stack *a, t_stack *b, int nb);
+int					ra(t_stack *a, t_stack *b, int nb);
+int					rb(t_stack *a, t_stack *b, int nb);
+int					rr(t_stack *a, t_stack *b, int nb);
+int					rra(t_stack *a, t_stack *b, int nb);
+int					rrb(t_stack *a, t_stack *b, int nb);
+int					rrr(t_stack *a, t_stack *b, int nb);
+int					sa(t_stack *a, t_stack *b, int nb);
+int					sb(t_stack *a, t_stack *b, int nb);
+int					ss(t_stack *a, t_stack *b, int nb);
 
 #endif
