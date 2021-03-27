@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/23 14:11:50 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:23:59 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int		init_a(t_stack *a, char **av, int ac)
 	}
 	a->nb = ac - 1;
 	a->maxnb = a->nb;
-	a->chunk = (a->nb % 2 == 0 ? a->nb / 2 : a->nb / 2 + 1);
+	a->chunk = (a->nb % 2 == 0 ? a->nb / 10 : a->nb / 10 + 1);
+	//a->chunk = 2;
+	a->chunked = a->chunk;
 	a->indchunk = 0;
 	a->doublon = 42;
 	return (check_a(a->stack, ac - 1));

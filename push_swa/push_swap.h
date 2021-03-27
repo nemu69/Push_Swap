@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 12:01:00 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/22 18:05:28 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 12:10:54 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef	struct		s_stack
 	int				min;
 	int				maxnb;
 	int				chunk;
+	int				chunked;
 	int				indchunk;
 	int				nb;
 	int				doublon;

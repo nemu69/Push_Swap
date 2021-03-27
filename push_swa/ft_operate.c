@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/23 18:18:01 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:19:09 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,25 @@ int topa(t_stack *a)
 	while (++top < a->nb)
 	{
 		i = a->indchunk - 1;
-		while (++i < a->maxnb - a->chunk)
+		while (++i < a->chunk + 1)
 		{
+			//dprintf(1, "%dtop:%lld bot:%lld sort : %lld\n",a->chunk,a->stack[top] ,a->stack[bottom] ,a->sort[i]);
 			if (a->stack[top] == a->sort[i])
 				return (top);
-			if (a->stack[bottom] == a->sort[i])
-				return (bottom);
+			//if (a->stack[bottom] == a->sort[i])
+			//	return (bottom);
 		}
+		//dprintf(1, "fin");
 		bottom--;
 	}
+	//sleep(2);
+	//dprintf(1, "%d\n", a->chunk);
+	//dprintf(1, "%d\n", a->indchunk);
 	a->indchunk = a->chunk;
-	a->chunk /= 2;
+	a->chunk += a->chunked;
+	//dprintf(1, "%d\n", a->chunk);
+	//dprintf(1, "%d\n", a->indchunk);
+	//sleep(2);
 	return (-1);
 }
 int topb(t_stack *b)
@@ -94,41 +102,44 @@ int topb(t_stack *b)
 	while (++i < b->nb)
 		if (b->stack[top] < b->stack[i])
 			top = i;
-	//dprintf(1, "top : %d\n", top);
 	return (top);
 }
 
 int		ft_pa(t_stack *a, t_stack *b)
 {
-	if (a->stack[0] > a->stack[1] && write(1, "sa\n", 3))
-		sa(a, b, 0, NULL);
 	//dprintf(1, "%d\n", a->chunk);
 	//dprintf(1, "%d\n", a->indchunk);
-	//sleep(5);
 	
-	while (!ft_sort(a, b->nb))
+			//retu	errn (1);
+	while (b->nb)
 	{
-		
+		//if (a->stack[0] > a->stack[1] && write(1, "sa\n", 3))
+		//	sa(a, b, 0, NULL);
 		if (!(a->min = topb(b)))
 			write(1, "pa\n", 3) && pa(a, b, 0, NULL);
+		//if (a->min){
+
+		//dprintf(1, "way %d\n", a->min);
+		//sleep(2);
+		//}
 		if (a->min == 1)
 			write(1, "sb\n", 3) && sb(a, b, 0, NULL);
 		else if (a->min > 1)
 		{
-			//return(1);
 			if (a->min <= b->nb / 2)
 			{
-				//dprintf(1, "min : %d\n", a->min);
-				while (topb(b))
+				while (topb(b) != 1)
 				{
 					a->min--;	
 					rb(a, b, 0, NULL);
 					write(1, "rb\n", 3);
 				}
+				sb(a, b, 0, NULL);
+				write(1, "sb\n", 3);
 			}
 			else
 			{
-				while (topb(b))
+				while (a->min != b->nb)
 				{
 					a->min++;	
 					rrb(a, b, 0, NULL);
@@ -143,8 +154,9 @@ int		ft_pa(t_stack *a, t_stack *b)
 int		ft_pushb(t_stack *a, t_stack *b, int nb, t_fct *fct)
 {
 	pb(a, b, 0, fct);
-	if (b->nb > 1 && b->stack[0] < b->stack[1] && write(1, "sb\n", 3))
-		return (sb(a, b, nb, fct));
+	//if (b->nb > 1 && b->stack[0] < b->stack[1] && write(1, "sb\n", 3))
+	//	return (sb(a, b, nb, fct));
+	//sleep(5);
 	return (ft_test(a, b, nb, fct));
 }
 
@@ -156,7 +168,7 @@ int		ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct)
 
 	temp = fct;
 
-	if (a->nb == 1)
+	if (a->nb == 0)
 		return (ft_pa(a, b));
 	if (ft_sort(a, b->nb))
 		return (1);
@@ -172,13 +184,10 @@ int		ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct)
 	//	for (int i = 0; i < b->nb; i++)
 	//	{
 	//			dprintf(1, "%lld\n", b->stack[i]);
-
 	//	}
-		
 		//sleep(3);
 	//}
-					usleep(50000);
-
+	//usleep(50000);
 	if (!(a->min = topa(a)))
 		return (write(1, "pb\n", 3) && ft_pushb(a, b, nb, fct));
 	//ft_fill(taba, tabb, a, b);
@@ -190,6 +199,8 @@ int		ft_test(t_stack *a, t_stack *b, int nb, t_fct *fct)
 			ra(a, b, 0, fct);
 			write(1, "ra\n", 3);
 		}
+		//sa(a, b, 0, fct);
+		//write(1, "sa\n", 3);
 	}
 	else if (a->min != -1)
 	{
