@@ -27,11 +27,9 @@ int	ft_sort(t_stack *a, int empty)
 	return (1);
 }
 
-int	free_all(t_stack *a, t_stack *b)
+int	free_all(t_stack *a, t_stack *b, int ret)
 {
-	int i;
 
-	i = 0;
 	if (a->stack)
 		free(a->stack);
 	if (b->stack)
@@ -40,37 +38,26 @@ int	free_all(t_stack *a, t_stack *b)
 		free(a->sort);
 	if (a->tab)
 	{
-		
-		while (a->tab[i])
+
+		while (a->tab[ret])
 		{
-			dprintf(1, "%s\n", a->tab[i]);
-			i++;
-		}
-		while (--i < 0)
-		{
-			ft_putstr(a->tab[i]);
-			free(a->tab[i]);
+			ft_putstr(a->tab[ret]);
+			free(a->tab[ret]);
+			ret--;
 		}
 	}
 	free(a->tab);
 	return (1);
 }
 
-int	ft_init_tab(t_stack *a, int nb)
+int	ft_init_fct(t_stack *a, int nb)
 {
 	int i;
 
 	i = -1;
-	if (!(a->sort = calloc(sizeof(int), nb)))
+	if (!(a->sort = malloc(sizeof(int) * nb)))
 		return (0);
 	while (++i < nb)
 		a->sort[i] = a->stack[i];
-	return (1);
-}
-
-int	ft_init_fct(t_stack *a, int nb)
-{
-	if (!ft_init_tab(a, nb))
-		return (0);
 	return (1);
 }

@@ -40,7 +40,7 @@ typedef	struct		s_fct
 }					t_fct;
 
 int					ft_test(t_stack *a, t_stack *b, int nb);
-int					free_all(t_stack *a, t_stack *b);
+int					free_all(t_stack *a, t_stack *b, int ret);
 int					ft_sort(t_stack *a, int empty);
 int					ft_init_fct(t_stack *a, int nb);
 int					lil_sort(t_stack *a, t_stack *b, int nb);

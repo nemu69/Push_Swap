@@ -151,6 +151,7 @@ int		lil_sort(t_stack *a, t_stack *b, int nb)
 	ft_gars(taba, tabb, a, b);
 	if (pa(a, b, nb) && (a->tab[nb] = ft_strdup("pa\n")))
 		return (1);
+	ft_gars(taba, tabb, a, b);
 	return (0);
 }
 
@@ -165,17 +166,17 @@ int		main(int ac, char **av)
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
 		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (free_all(&a, NULL) && ft_putstr("Error\n"));
+		return (free_all(&a, NULL, 0) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(&a, &b) && ft_putstr("Error\n"));
+		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
 	b.nb = 0;
 	ret = shellsort(a.stack, a.nb);
-	if (!ft_init_fct(&a, a.nb))
-		return (free_all(&a, &b) && ft_putstr("Error\n"));
+	if (a.nb > 6 && !ft_init_fct(&a, a.nb))
+		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(&a, &b) && ft_putstr("Error\n"));
-	if (!(a.tab = (char **)malloc(sizeof(char *) * ret + 1)))
-		return (free_all(&a, &b) && ft_putstr("Error\n"));
+		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
+	if (a.nb < 6 && !(a.tab = (char **)calloc(sizeof(char *) , ret + 1)))
+		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
 	a.nb < 6 ? lil_sort(&a, &b, ret) : ft_test(&a, &b, 0);
-	return (!free_all(&a, &b));
+	return (!free_all(&a, &b, ret));
 }

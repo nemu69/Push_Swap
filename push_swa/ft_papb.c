@@ -34,8 +34,8 @@ int		pa(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		b->nb--;
-		if (nb)
-			return (lil_sort(a, b, nb - 1));
+		if (nb && lil_sort(a, b, nb - 1))
+			return (1);
 	}
 	return (0);
 }
@@ -62,8 +62,8 @@ int		pb(t_stack *a, t_stack *b, int nb)
 			i++;
 		}
 		a->nb--;
-		if (nb)
-			return (lil_sort(a, b, nb - 1));
+		if (nb && lil_sort(a, b, nb - 1))
+			return (1);
 	}
 	return (0);
 }

@@ -15,9 +15,9 @@
 #                                VARIABLES                                     #
 # **************************************************************************** #
 
-HEADER		=			push_swa/push_swap.h
+HEADER		=			push_swa/
 
-HEADER		=			checke/checker.h
+HEADER		=			checke/
 
 LIBS		=			libft/libft.a
 
