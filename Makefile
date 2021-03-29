@@ -6,7 +6,7 @@
 #    By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/08 11:33:38 by nepage-l          #+#    #+#              #
-#    Updated: 2021/03/15 17:09:16 by nepage-l         ###   ########lyon.fr    #
+#    Updated: 2021/03/29 16:12:47 by nepage-l         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@
 #                                VARIABLES                                     #
 # **************************************************************************** #
 
-HEADER		=			push_swa/
+HEADER		=			push_swa/push_swap.h
 
-HEADER		=			checke/
+HEADER		=			checke/checker.h
 
 LIBS		=			libft/libft.a
 
@@ -72,12 +72,12 @@ all: $(NAME) $(NAME2)
 
 $(NAME): $(LIBS) $(OBJS) $(HEADER) | ART
 						@echo "\x1b[36m\n[OK] \033[0m \x1b[35m Compiling push_swap\n\033[0m"
-						gcc $(OBJS) $(FLAGS) $(LIBS) -o $(NAME)
+						gcc $(FLAGS) $(OBJS) $(LIBS) -o $(NAME)
 						
 
 $(NAME2): $(LIBS) $(OBJS2) $(HEADER2) | ART2
 						@echo "\x1b[36m\n[OK] \033[0m \x1b[35m Compiling checker\n\033[0m"
-						gcc $(OBJS2) $(FLAGS) $(LIBS) -o $(NAME2)
+						gcc $(FLAGS) $(OBJS2) $(LIBS) -o $(NAME2)
 
 $(LIBS): FORCE
 		@$(MAKE) -C libft all

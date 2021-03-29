@@ -6,7 +6,7 @@
 #    By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/16 16:41:01 by nepage-l          #+#    #+#              #
-#    Updated: 2021/03/15 11:20:20 by nepage-l         ###   ########lyon.fr    #
+#    Updated: 2021/03/29 16:12:18 by nepage-l         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRCS = 		ft_isdigit.c \
 			ft_lstclear_bonus.c \
 			ft_lstdelone_bonus.c
 
-HEADER = 	.
+HEADER = 	libft.h
 
 OBJS = ${SRCS:.c=.o}
 

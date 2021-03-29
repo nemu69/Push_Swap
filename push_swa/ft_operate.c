@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 18:19:11 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 16:02:10 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ int		ft_pa(t_stack *a, t_stack *b)
 int		ft_pushb(t_stack *a, t_stack *b, int nb)
 {
 	pb(a, b, 0);
-	return (ft_test(a, b, nb));
+	return (ft_operate(a, b, nb));
 }
 
-int		ft_test(t_stack *a, t_stack *b, int nb)
+int		ft_operate(t_stack *a, t_stack *b, int nb)
 {
+	a->shell = -1;
 	if (a->nb == 0)
 		return (ft_pa(a, b));
 	if (ft_sort(a, b->nb))
@@ -89,5 +90,5 @@ int		ft_test(t_stack *a, t_stack *b, int nb)
 	else if (a->min != -1)
 		while (a->min++ != a->nb)
 			write(1, "rra\n", 4) && rra(a, b, 0);
-	return (ft_test(a, b, nb));
+	return (ft_operate(a, b, nb));
 }

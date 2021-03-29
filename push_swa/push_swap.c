@@ -6,7 +6,7 @@
 /*   By: nepage-l <nepage-l@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 11:56:07 by nepage-l          #+#    #+#             */
-/*   Updated: 2021/03/27 19:12:54 by nepage-l         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 16:01:22 by nepage-l         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ int		init_a(t_stack *a, char **av, int ac)
 	int j;
 
 	i = 1;
+	a->nb = ac - 1;
+	a->chunk = (a->nb < 100 ? 2 : a->nb / 10);
+	a->chunked = a->chunk;
+	a->indchunk = 0;
+	a->doublon = 42;
+	a->tab = NULL;
 	while (av[i])
 	{
 		j = 0;
@@ -53,12 +59,6 @@ int		init_a(t_stack *a, char **av, int ac)
 		a->stack[i - 1] = ft_atoi(av[i]);
 		i++;
 	}
-	a->nb = ac - 1;
-	a->maxnb = a->nb;
-	a->chunk = (a->nb % 2 == 0 ? a->nb / 10 : a->nb / 10 + 1);
-	a->chunked = a->chunk;
-	a->indchunk = 0;
-	a->doublon = 42;
 	return (check_a(a->stack, ac - 1));
 }
 
@@ -91,52 +91,16 @@ int		shellsort(long long *arr, int n)
 	return (ret);
 }
 
-int		ft_gars(int *tempa, int *tempb, t_stack *a, t_stack *b)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = -1;
-	a->nb = tempa[i++];
-	b->nb = tempa[i++];
-	a->doublon = tempa[i++];
-	while (++j < a->nb)
-		a->stack[j] = tempa[i + j];
-	i = -1;
-	while (++i < b->nb)
-		b->stack[i] = tempb[i];
-	return (0);
-}
-
-void	ft_fill(int *tempa, int *tempb, t_stack *a, t_stack *b)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = -1;
-	tempa[i++] = a->nb;
-	tempa[i++] = b->nb;
-	tempa[i++] = a->doublon;
-	while (++j < a->nb)
-		tempa[i + j] = a->stack[j];
-	i = -1;
-	while (++i < b->nb)
-		tempb[i] = b->stack[i];
-}
-
 int		lil_sort(t_stack *a, t_stack *b, int nb)
 {
 	int		taba[a->nb + 4];
 	int		tabb[b->nb + 4];
-	
+
 	ft_fill(taba, tabb, a, b);
 	if (ft_sort(a, b->nb))
 		return (1);
 	if (nb == 0)
 		return (0);
-	ft_gars(taba, tabb, a, b);
 	if (sa(a, b, nb) && (a->tab[nb] = ft_strdup("sa\n")))
 		return (1);
 	ft_gars(taba, tabb, a, b);
@@ -151,7 +115,8 @@ int		lil_sort(t_stack *a, t_stack *b, int nb)
 	ft_gars(taba, tabb, a, b);
 	if (pa(a, b, nb) && (a->tab[nb] = ft_strdup("pa\n")))
 		return (1);
-	ft_gars(taba, tabb, a, b);
+	if (a->shell == nb)
+		return (lil_sort(a, b, ++a->shell));
 	return (0);
 }
 
@@ -159,24 +124,24 @@ int		main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
-	int		ret;
 
 	if (ac == 1)
 		return (0);
 	if (!(a.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
 		return (ft_putstr("Error\n"));
 	if (!(b.stack = (long long int *)malloc(sizeof(long long int) * ac - 1)))
-		return (free_all(&a, NULL, 0) && ft_putstr("Error\n"));
+		return (free_all(&a, NULL, -1) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
+		return (free_all(&a, &b, -2) && ft_putstr("Error\n"));
 	b.nb = 0;
-	ret = shellsort(a.stack, a.nb);
-	if (a.nb > 6 && !ft_init_fct(&a, a.nb))
-		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
+	a.shell = shellsort(a.stack, a.nb);
+	if (!ft_init_fct(&a, a.nb))
+		return (free_all(&a, &b, -1) && ft_putstr("Error\n"));
 	if (!init_a(&a, av, ac))
-		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
-	if (a.nb < 6 && !(a.tab = (char **)calloc(sizeof(char *) , ret + 1)))
-		return (free_all(&a, &b, 0) && ft_putstr("Error\n"));
-	a.nb < 6 ? lil_sort(&a, &b, ret) : ft_test(&a, &b, 0);
-	return (!free_all(&a, &b, ret));
+		return (free_all(&a, &b, -1) && ft_putstr("Error\n"));
+	a.nb < 6 ? 0 : ft_operate(&a, &b, 0);
+	if (a.shell != -1 && !(a.tab = calloc(sizeof(char *), a.shell + 2)))
+		return (free_all(&a, &b, -1) && ft_putstr("Error\n"));
+	a.nb < 6 ? lil_sort(&a, &b, a.shell) : 0;
+	return (!free_all(&a, &b, a.shell));
 }
